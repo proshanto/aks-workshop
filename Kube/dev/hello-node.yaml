@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
       - name: aks-hellonode
-        image: proshanta.azurecr.io/aks-workshop:prod
+        image: proshanta.azurecr.io/aks-workshop:#{Release.Artifacts.aks.BuildNumber}#
         ports:
         - containerPort: 80
         imagePullPolicy: Always
