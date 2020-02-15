@@ -6,9 +6,9 @@
 pool:
   vmImage: 'ubuntu-latest'
 
-  variables:
-    VERSION: '$(build.buildNumber)'
-    DOCKER_REGISTRY: $(dockerId).azurecr.io
+variables:
+  VERSION: '$(build.buildNumber)'
+  DOCKER_REGISTRY: $(dockerId).azurecr.io
 
 steps:
 - script: sudo systemctl status docker
