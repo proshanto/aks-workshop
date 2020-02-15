@@ -1,0 +1,23 @@
+# Docker image
+# Build a Docker image to deploy, run, or push to a container registry.
+# Add steps that use Docker Compose, tag images, push to a registry, run an image, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+pool:
+    vmImage: 'ubuntu-latest'
+  
+  variables:
+    VERSION: '$(build.buildNumber)'
+    DOCKER_REGISTRY: $(dockerId).azurecr.io
+  
+  steps:
+  - script: sudo systemctl status docker
+    displayName: 'docker status'
+  
+  - script: docker build -t aks-workshop:latest -f docker/Dockerfile .
+    displayName: 'docker build'
+  
+  - script: |
+      echo "$(dockerPassword)" | docker login  $(dockerId).azurecr.io -u $(dockerUsername) --password-stdin
+      docker push $(dockerId).azurecr.io/aks-workshop:$(VERSION)
+    displayName: "docker publish"
