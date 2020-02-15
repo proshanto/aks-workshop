@@ -21,3 +21,14 @@ pool:
       echo "$(dockerPassword)" | docker login  $(dockerId).azurecr.io -u $(dockerUsername) --password-stdin
       docker push $(dockerId).azurecr.io/aks-workshop:$(VERSION)
     displayName: "docker publish"
+  
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: $(Build.SourcesDirectory)/Kube/
+      contents: '**/*.*'
+      targetFolder: $(Build.ArtifactStagingDirectory)/Kube/
+    
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      artifactsName: 'drop'
