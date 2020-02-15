@@ -14,10 +14,10 @@ steps:
 - script: sudo systemctl status docker
   displayName: 'docker status'
 
-- script: docker build -t aks-workshop:$(VERSION) -f docker/Dockerfile .
+- script: docker build -t $(dockerId).azurecr.io/aks-workshop:prod -f docker/Dockerfile .
   displayName: 'docker build'
 
 - script: |
     echo "$(dockerPassword)" | docker login  $(dockerId).azurecr.io -u $(dockerUsername) --password-stdin
-    docker push $(dockerId).azurecr.io/aks-workshop:$(VERSION)
+    docker push $(dockerId).azurecr.io/aks-workshop:prod
   displayName: "docker publish"
