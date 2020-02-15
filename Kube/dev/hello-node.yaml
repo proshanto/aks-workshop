@@ -72,13 +72,13 @@ metadata:
 spec:
   tls:
     - hosts:
-      - proshanta-dns.eastus.cloudapp.azure.com
-    secretName: proshanta-dns-eastus-cloudapp-azure-com-staging
+        - proshanta-dns.eastus.cloudapp.azure.com
+      secretName: proshanta-dns-eastus-cloudapp-azure-com-staging
   rules:
-  - host: proshanta-dns.eastus.cloudapp.azure.com
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: aks-hellonode-service
-          servicePort: 80
+    - host: proshanta-dns.eastus.cloudapp.azure.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: aks-hellonode-service
+              servicePort: 80
