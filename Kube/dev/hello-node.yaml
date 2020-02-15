@@ -73,7 +73,7 @@ spec:
   tls:
     - hosts:
       - proshanta-dns.eastus.cloudapp.azure.com
-  secretName: proshanta-dns-eastus-cloudapp-azure-com-staging
+    secretName: proshanta-dns-eastus-cloudapp-azure-com-staging
   rules:
   - host: proshanta-dns.eastus.cloudapp.azure.com
     http:
